@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/prueba-makefile
 #include <linux/init.h>      // Macros __init y __exit
 #include <linux/module.h>    // Funciones básicas de módulo
 #include <linux/kernel.h>    // printk()
@@ -43,4 +47,8 @@ static void __exit fifo_mod_exit(void) {
 }
 
 module_init(fifo_mod_init);
+<<<<<<< HEAD
 module_exit(fifo_mod_exit);
+=======
+module_exit(fifo_mod_exit);
+>>>>>>> origin/prueba-makefile
