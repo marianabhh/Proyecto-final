@@ -1,4 +1,3 @@
-
 #include <linux/init.h>      // Macros __init y __exit
 #include <linux/module.h>    // Funciones básicas de módulo
 #include <linux/kernel.h>    // printk()
@@ -15,26 +14,26 @@ static char *mensaje = "Hola desde el kernel!\n";
 static struct file *fifo_file;
 
 static int __init fifo_mod_init(void) {
-    mm_segment_t old_fs;
+
     loff_t pos = 0;
 
     printk(KERN_INFO "fifo_mod: Cargando módulo...\n");
 
     // Permitir acceso a espacio de usuario
-    old_fs = get_fs();
-    set_fs(KERNEL_DS);
+
+
 
     fifo_file = filp_open("/tmp/mi_fifo", O_WRONLY | O_CREAT, 0666);
     if (IS_ERR(fifo_file)) {
         printk(KERN_ALERT "fifo_mod: No se pudo abrir el FIFO\n");
-        set_fs(old_fs);
+
         return PTR_ERR(fifo_file);
     }
 
     kernel_write(fifo_file, mensaje, strlen(mensaje), &pos);
     filp_close(fifo_file, NULL);
 
-    set_fs(old_fs);
+
     printk(KERN_INFO "fifo_mod: Mensaje escrito en el FIFO\n");
     return 0;
 }
