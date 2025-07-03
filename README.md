@@ -9,12 +9,12 @@ Facilitar la interacción entre el kernel y múltiples procesos en user space us
 
 ## Pasos para ejecutar proyecto
 -Instalar todos los archivos que incluyen:
-    
+```sh
     Makefile
     test_device.c
     test_device.sh
     mi_dispositivo.c
-    
+```
 -Ejecutar el comando: make
 
 ### Para ejecutar el test_device.c
@@ -22,7 +22,7 @@ Facilitar la interacción entre el kernel y múltiples procesos en user space us
 
 -Ejecutar comando: ./test_device
 
--Probar las opcines que se muestran en la terminal
+-Probar las opciones que se muestran en la terminal
 
 ### Para ejecutar el test_device.sh
 -Ejecutar el comando: chmod +x test_device.sh
@@ -40,5 +40,5 @@ En caso de tener problemas del tipo "el directorio no ha sido encontrado" buscar
 
 ## Autores
 - Mariana Bernal Hernández
-- Maikel Ordeñana Prado
-- Kevin Baules Rojas
+- Maikel Ordeñana Rojas
+- Kevin Baules Prado
