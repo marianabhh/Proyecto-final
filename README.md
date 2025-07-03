@@ -15,19 +15,19 @@ Facilitar la interacción entre el kernel y múltiples procesos en user space us
     test_device.sh
     mi_dispositivo.c
 ```
--Ejecutar el comando: make
+-Ejecutar el comando: `make`
 
 ### Para ejecutar el test_device.c
--Ejecutar el comando como root: sudo gcc -o test_device test_device.c
+-Ejecutar el comando como root: `sudo gcc -o test_device test_device.c`
 
--Ejecutar comando: ./test_device
+-Ejecutar comando: `./test_device`
 
 -Probar las opciones que se muestran en la terminal
 
 ### Para ejecutar el test_device.sh
--Ejecutar el comando: chmod +x test_device.sh
+-Ejecutar el comando: `chmod +x test_device.sh`
 
--Ejecutar como : ./test_device.sh 
+-Ejecutar como : `./test_device.sh` 
 
 En caso de tener problemas del tipo "el directorio no ha sido encontrado" buscar en el WIKI la solucion
 
