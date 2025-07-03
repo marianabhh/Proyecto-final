@@ -7,6 +7,21 @@ Facilitar la interacción entre el kernel y múltiples procesos en user space us
 ## Estado del proyecto
 🔧 En desarrollo
 
+## Pasos para ejecutar proyecto
+-Instalar todos los archivos que incluyen:
+    Makefile
+    test_device.c
+    test_device.sh
+    mi_dispositivo.c
+-Ejecutar el comando: make
+
+### Para ejecutar el test_device.c
+-Ejecutar el comando: gcc -o test_device test_device.c
+-Ejecutar comando: ./test_device
+-Probar las opcines que se muestran en la terminal
+
+### Para ejecutar el test_device.sh
+
 ## Requisitos
 - Kernel de Linux
 - Herramientas de compilación (`make`, `gcc`)
