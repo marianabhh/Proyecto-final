@@ -21,6 +21,12 @@ Facilitar la interacción entre el kernel y múltiples procesos en user space us
 -Probar las opcines que se muestran en la terminal
 
 ### Para ejecutar el test_device.sh
+jecutar el comando: chmod +x test_device.sh
+Ejecutar como : ./test_device.sh 
+
+En caso de tener problemas del tipo "el directorio no ha sido encontrado" buscar en el WIKI la solucion
+
+
 
 ## Requisitos
 - Kernel de Linux
