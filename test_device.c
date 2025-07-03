@@ -1,19 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <string.h>
-#include <errno.h>
+#include <stdio.h>      // printf, perror, fgets
+#include <stdlib.h>     // EXIT_SUCCESS, EXIT_FAILURE
+#include <fcntl.h>      // open
+#include <unistd.h>     // read, write, close
+#include <string.h>     // strlen
+#include <errno.h>      // strerror
 
-#define DEVICE_PATH "/dev/mi_dispositivo"
-#define BUFFER_SIZE 1024
+#define DEVICE_PATH "/dev/mi_dispositivo"  // Ruta al dispositivo, sin esto no funciona
+#define BUFFER_SIZE 1024                   // Tamaño del buffer de lectura/escritura
 
-// Función para escribir en el dispositivo
+// Función para escribir un mensaje al dispositivo
 void write_to_device(int fd) {
     char buffer[BUFFER_SIZE];
     printf("Ingrese el mensaje a enviar al kernel: ");
-    fgets(buffer, BUFFER_SIZE, stdin); // Lee incluso espacios
+    fgets(buffer, BUFFER_SIZE, stdin);  // Captura la entrada del usuario
 
+    // Escribe el mensaje al dispositivo
     ssize_t bytes_written = write(fd, buffer, strlen(buffer));
     if (bytes_written < 0) {
         perror("Error al escribir");
@@ -22,20 +23,20 @@ void write_to_device(int fd) {
     }
 }
 
-// Función para leer desde el dispositivo
+//Función para leer un mensaje desde el dispositivo
 void read_from_device(int fd) {
     char buffer[BUFFER_SIZE];
-    ssize_t bytes_read = read(fd, buffer, BUFFER_SIZE - 1);
-    
+    ssize_t bytes_read = read(fd, buffer, BUFFER_SIZE - 1);  // -1 para dejar espacio para "\0"
+
     if (bytes_read < 0) {
         perror("Error al leer");
     } else {
-        buffer[bytes_read] = '\0'; // Null-terminate
+        buffer[bytes_read] = '\0';  // Asegura que el string esté terminado en null
         printf("Mensaje del kernel: %s\n", buffer);
     }
 }
 
-// Menú interactivo
+// Menú interactivo para el usuario
 void show_menu(int fd) {
     int choice;
     do {
@@ -45,7 +46,7 @@ void show_menu(int fd) {
         printf("3. Salir\n");
         printf("Seleccione una opción: ");
         scanf("%d", &choice);
-        getchar(); // Limpia el '\n' del buffer
+        getchar();  // Limpia el '\n' que queda en el buffer
 
         switch (choice) {
             case 1:
@@ -60,10 +61,12 @@ void show_menu(int fd) {
             default:
                 printf("Opción inválida.\n");
         }
-    } while (choice != 3);
+    } while (choice != 3); // Para que se ingrese sólo los números válidos
 }
 
+// Función principal
 int main() {
+    // Abre el dispositivo con permisos de lectura y escritura
     int fd = open(DEVICE_PATH, O_RDWR);
     if (fd < 0) {
         fprintf(stderr, "No se pudo abrir %s. Error: %s\n", DEVICE_PATH, strerror(errno));
@@ -71,8 +74,8 @@ int main() {
     }
 
     printf("¡Dispositivo %s abierto correctamente!\n", DEVICE_PATH);
-    show_menu(fd);
+    show_menu(fd);  // Lanza el menú interactivo
 
-    close(fd);
+    close(fd);  // Cierra el dispositivo
     return EXIT_SUCCESS;
 }
